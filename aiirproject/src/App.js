@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Home from './containers/Home';
 import ViewTask from './containers/ViewTask';
-import permissionDenied from './components/permissionDenied';
 import './style/base.scss'
 
 export default class App extends Component {
@@ -16,22 +15,23 @@ export default class App extends Component {
     this.handler = this.handler.bind(this)
   }
 
-  handler(user,logged){
-    alert("dupa!")
-    this.setState({
-      userID: user,
-      isLogged: logged
-    })
-    
+  componentDidUpdate(prev) {
+    console.log(this.state)
+  }
 
+  handler = (usr) => {
+    console.log(usr)
+    this.setState({userID: usr, isLogged: true})
+    
   }
 
   render() {
     return (
       <Router>
         <div className='base'>
-          <Route exact path="/" render={props => <Home handler={this.state.handler}/>}/>
-          {this.state.isLogged ? <Route exact path="/view" render={props => (<ViewTask/>)}/> : <Redirect to='/'/> }
+          <Route exact path="/" render={props => <Home userHandler={props => this.handler(props)}/>}/>
+          {this.state.isLogged ? <Route exact path="/view" render={props => (<ViewTask userID={this.state.userID}/>)}/> : <Redirect to='/'/> }
+          {this.state.isLogged ? <Redirect to='/view'/> : null}
         </div>
       </Router>
     );

@@ -24,8 +24,7 @@ export default class Login extends Component {
   handleSubmit(event){
     event.preventDefault();
     const data = new FormData(event.target);
-    const username = data.get('user')
-    this.props.handler(username)
+    const username = data.get('user')   
     apiClient.login(data)
     .then(response => response === true ? this.setState({isLogged: true}) : null)
     .catch(error => {})

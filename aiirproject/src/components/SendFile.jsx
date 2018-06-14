@@ -6,8 +6,8 @@ export default class SendFile extends Component {
     this.state = { 
       file: null,
       userID:'',
-      keyword:'',
-      taskname:''
+      query:'',
+      taskName:''
     };
   }
 
@@ -31,9 +31,9 @@ export default class SendFile extends Component {
   }
 
   prepareSend = file => ({
-    userId: this.state.userID,
-    keyword: this.state.keyword,
-    taskName: this.state.tasknames,
+    userID: this.props.userID,
+    query: this.props.query,
+    taskName: this.props.taskName,
     file
   })
 
@@ -49,11 +49,7 @@ export default class SendFile extends Component {
     })
   }
   /*
-      if(isUploaded) {
-       return (
-        <p>DONE!!</p>
-      )
-    }*/
+      */
     /*<button label='Import key' onClick={ () => document.getElementById('getFile').click() }>
         Send file
       </button>*/

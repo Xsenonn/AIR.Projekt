@@ -9,17 +9,17 @@ const CreateTask = props => {
     return props.close();
   }
 
-  const state = {
-    userID:'',
-    taskName:'',
-    query:''
+  const payload = {
+    userID: props.userID,
+    taskName: props.taskName,
+    query: props.query
   }
   
   return (
     <div className='overlay'>
       <div className='CreateTask'>
         <div className='CreateTask__Header'>
-          <h1>Create Task</h1>
+          <h1>Create Task for {payload.userID}</h1>
           <button onClick={(event) => closeContainer(event)}>X</button>
         </div>
         <div className='CreateTask__Main'>
@@ -28,7 +28,7 @@ const CreateTask = props => {
           <input type='text' name='taskName' onChange={props.onChangeTaskName} value={props.taskName} />
           <label htmlFor='query'>Query</label>
           <input type='text' name='query' onChange={props.onChangeQuery} value={props.query} />
-          <SendFile/>
+          <SendFile userID={props.userID} taskName={props.taskName} query={props.query}/>
           <input type="submit" value="Submit"/>
         </form>
         </div>

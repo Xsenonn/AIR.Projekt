@@ -11,9 +11,24 @@ export default class Home extends Component {
     super(props);
     this.state = {
       login: true,
-      register:false
+      register:false,
+      userID:'',
+      pass:''
     }
+    
   }
+
+  handler = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const user = data.get('username');
+    const pass = data.get('pass');
+    this.setState({userID: user, pass: pass})
+    apiClient.login(user,pass)
+    .then(response => response === true ? this.props.userHandler(this.state.userID): null )
+  }
+
+  
   
   componentDidUpdate(prev) {
     console.log(this.state)
@@ -33,23 +48,16 @@ export default class Home extends Component {
         break;
     }
   }
-  validateUser(event){
-    event.preventDefault();
-    const data = new FormData(event.target);
-    apiClient.login(data)
-    .then(response => response === true ? null : null)
-    .catch(error => {})
-    
-  }
 
   render() {
     const { login, register } = this.state;
     return(
       <div className='container'>
-        { login ? <Login close={() => this.setState({ login: false, register: true })}/> : null }
-        { register ? <Register close={() => this.setState({register: false, login: true })}/> : null }
-        {/*<LoginMenu display={popup => this.display(popup)}/>*/}  
-        {/*<BaseTable tasks={this.state.tasks}/>*/}
+        {/*this.state.handler*/}
+        { login ? <Login close={() => this.setState({ login: false, register: true })} 
+                         handler={(props) => this.handler(props)}/> : null }
+        { register ? <Register close={() => this.setState({register: false, login: true })} 
+                         handler={(event) => this.handler(event)}/> : null }
       </div>
     )
   }

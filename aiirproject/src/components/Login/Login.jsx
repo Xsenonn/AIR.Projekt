@@ -12,8 +12,9 @@ const Login = (props) => {
     event.preventDefault();
     const data = new FormData(event.target);
     const user = data.get('username');
+    console.log(event.target.value)
     apiClient.login(data)
-    .then(response => response === true ? props.handler(user,true) : null )
+    .then(response => response === true ? null : null )
     .catch(error => {})
   }
 
@@ -25,7 +26,7 @@ const Login = (props) => {
           <button onClick={(event) => closeContainer(event)}>Register</button>
         </div>
         <div className='Login__Main'>
-        <form className='Login__Form' onSubmit={(event) => handleSubmit(event)}>
+        <form className='Login__Form' onSubmit={(event) => props.handler(event)}>
           <label htmlFor='username'>Username</label>
           <input type='text' name='username'/>
           <label htmlFor='pass'>Password</label>

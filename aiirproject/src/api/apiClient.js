@@ -18,7 +18,8 @@ class ApiClient {
     return Promise.resolve(true);
   };
 
-  login = credentials => {
+  login = (userID,pass) => {
+    alert(userID + " " + pass)
     /*return this.api.post('/login', credentials)
     .then(response => {
       if(response.data.code === 200){
@@ -33,7 +34,7 @@ class ApiClient {
   }
 
   sendFile = data => {
-    console.log("InApi!")
+    console.log(data)
     /*return this.api.post('/sendFile', data)
     .then(response => {
       if(response.data.code === 200) {

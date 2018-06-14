@@ -11,6 +11,7 @@ export default class ViewTask extends Component {
     this.state = {
       create: false,
       taskName: '',
+      query:'',
       tasks:[{
         taskId:'1',
         query:'dupa',
@@ -38,6 +39,15 @@ export default class ViewTask extends Component {
     this.setState({ taskName: event.target.value });
   }
 
+  hendleQuery = event => {
+    this.setState({ query: event.target.value});
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault()
+    alert("dupa!")
+  }
+
   display = popup => {
     switch (popup) {
       case 'create': {
@@ -59,10 +69,14 @@ export default class ViewTask extends Component {
       <div className='container'>
         { 
           create 
-          ? <CreateTask 
+          ? <CreateTask
+              userID={this.props.userID} 
               close={() => this.setState({ create: false })}
               onChangeTaskName={(event) => this.hendleTaskName(event)}
+              onChangeQuery={(event) => this.hendleQuery(event)}
               taskName={this.state.taskName}
+              query={this.state.query}
+              onSubmit={(event) => this.onSubmit(event)}
             /> 
           : null
         }
