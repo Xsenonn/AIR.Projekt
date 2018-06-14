@@ -7,7 +7,8 @@ export default class SendFile extends Component {
       file: null,
       userID:'',
       query:'',
-      taskName:''
+      taskName:'',
+      isUploaded: false
     };
   }
 
@@ -50,17 +51,18 @@ export default class SendFile extends Component {
   }
   /*
       */
-    /*<button label='Import key' onClick={ () => document.getElementById('getFile').click() }>
-        Send file
-      </button>*/
+    /**/
   render() {
     return(
+      
       <div className='SendFile'>
+        {this.state.isUploaded ? <h4>File has been sent!</h4> : 
         <input 
           type="file" 
-          id="getFile" 
+          id="getFile"
+          label="Send"
           onChange={this.getFile}
-        />
+        />}
       </div>
     )
   }

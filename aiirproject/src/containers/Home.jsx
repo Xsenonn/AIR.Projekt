@@ -28,6 +28,17 @@ export default class Home extends Component {
     .then(response => response === true ? this.props.userHandler(this.state.userID): null )
   }
 
+  handlerReg = (event) => {
+    console.log("chuj!")
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const user = data.get('username');
+    const pass = data.get('pass');
+    this.setState({userID: user, pass: pass})
+    apiClient.register(user,pass)
+    .then(response => response === true ? this.props.userHandler(this.state.userID): null )
+  }
+
   
   
   componentDidUpdate(prev) {
@@ -54,10 +65,11 @@ export default class Home extends Component {
     return(
       <div className='container'>
         {/*this.state.handler*/}
-        { login ? <Login close={() => this.setState({ login: false, register: true })} 
+        { login ? <Login close={() => this.setState({ login: false})} 
                          handler={(props) => this.handler(props)}/> : null }
-        { register ? <Register close={() => this.setState({register: false, login: true })} 
-                         handler={(event) => this.handler(event)}/> : null }
+        { register ? <Register close={() => this.setState({register: false})} 
+                         handlerReg={(props) => this.handlerReg(props)}/> : null }
+        <LoginMenu display={popup => this.display(popup)}/>
       </div>
     )
   }

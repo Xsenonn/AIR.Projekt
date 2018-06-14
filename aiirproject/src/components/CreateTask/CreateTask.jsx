@@ -23,13 +23,12 @@ const CreateTask = props => {
           <button onClick={(event) => closeContainer(event)}>X</button>
         </div>
         <div className='CreateTask__Main'>
-        <form className='CreateTask__Form' onSubmit={props.onSubmit}>
+        <form className='CreateTask__Form'>
           <label htmlFor='taskName'>Task Name</label>
           <input type='text' name='taskName' onChange={props.onChangeTaskName} value={props.taskName} />
           <label htmlFor='query'>Query</label>
           <input type='text' name='query' onChange={props.onChangeQuery} value={props.query} />
           <SendFile userID={props.userID} taskName={props.taskName} query={props.query}/>
-          <input type="submit" value="Submit"/>
         </form>
         </div>
       </div>

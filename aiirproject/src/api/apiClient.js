@@ -8,7 +8,7 @@ class ApiClient {
     });
   }
 
-  register = user => {
+  register = (userID,pass) => {
     /*return this.api.post('/register', user)
     .then(response => {
       const { code } = response.data;

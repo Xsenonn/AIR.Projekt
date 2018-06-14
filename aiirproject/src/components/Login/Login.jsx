@@ -23,7 +23,7 @@ const Login = (props) => {
       <div className='Login'>
         <div className='Login__Header'>
           <h1>Login</h1>
-          <button onClick={(event) => closeContainer(event)}>Register</button>
+          <button onClick={(event) => closeContainer(event)}>X</button>
         </div>
         <div className='Login__Main'>
         <form className='Login__Form' onSubmit={(event) => props.handler(event)}>
