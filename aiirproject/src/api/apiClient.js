@@ -9,18 +9,18 @@ class ApiClient {
   }
 
   register = (userID,pass) => {
-    /*return this.api.post('/register', user)
+    return this.api.post('/register', {userID: userID, pass: pass})
     .then(response => {
       const { code } = response.data;
       return code;
     })
-    .catch(error => console.log(error));*/
-    return Promise.resolve(true);
+    .catch(error => console.log(error));
+    /*return Promise.resolve(true);*/
   };
 
   login = (userID,pass) => {
     alert(userID + " " + pass)
-    /*return this.api.post('/login', credentials)
+    return this.api.post('/login', {userID: userID, pass: pass})
     .then(response => {
       if(response.data.code === 200){
         return true;
@@ -29,13 +29,13 @@ class ApiClient {
         return false;
       }
     })
-    .catch(error => console.log(error))*/
-    return Promise.resolve(true);
+    .catch(error => console.log(error))
+     /*return Promise.resolve(true);*/
   }
 
   sendFile = data => {
-    console.log(data)
-    /*return this.api.post('/sendFile', data)
+    /*console.log(data)*/
+    return this.api.post('/sendFile', data)
     .then(response => {
       if(response.data.code === 200) {
         return true
@@ -44,10 +44,10 @@ class ApiClient {
         return false;
       }
     })
-    .catch(error => console.log(error))*/
-    return Promise.resolve(true);
+    .catch(error => console.log(error))
+     /*return Promise.resolve(true);*/
   }
-
+//===========Not tested yet!!!====================
   getTasks = username => {
     return this.api.get('/getFiles', username)
     .then(response => {return response})
